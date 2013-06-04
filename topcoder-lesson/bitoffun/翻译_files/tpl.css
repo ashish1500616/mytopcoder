@@ -1,0 +1,262 @@
+/* CSS 通用 */
+
+
+ul,li{
+margin: 0px;
+padding: 2px;
+list-style:none;
+}
+
+p{
+text-indent: 0em;
+margin: 0px;
+padding: 0px;
+}
+img{border:0px;}
+.no_way{clear:both;display:block;}
+
+a:link,a:visited {
+color: #333333;
+text-decoration: none;
+font-size: 12px;
+}
+
+a:hover {
+color: #FF0000;
+text-decoration: none;
+font-size: 12px;
+}
+
+/* CSS 帮助 */
+a.help:link,a.help:visited {
+	color: #CC0000;
+	text-decoration: underline;
+	font-size: 12px;
+}
+
+a.help:hover {
+	color: #FF0000;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+/* CSS 输入 */
+.input_01 {
+	background-color: #FFF;width: 160px;
+	border: 1px solid #CCC;
+}
+
+.input_02 {
+	background-color: #FFF;width: 100px;
+	border: 1px solid #CCC;
+}
+
+/* CSS 导航 */
+.top_login{
+margin: 0px auto 0px auto;
+border: 0px;
+width: 100%;height: 27px;
+padding-top:4px;	
+background-image: url(http://i.blog.edu.cn/img/tpl/bg_login.jpg);
+}
+
+.top_daohang{
+margin: 0px auto 0px auto;
+border: 0px;
+width: 950px;height: 35px;
+font-size: 12px;
+}
+
+
+/* CSS blog内容 */
+.blog_main{clear:both;
+margin: 8px auto 0px auto;
+border: 0px;
+width: 950px;padding-bottom:10px;
+}
+
+
+.blog_content a:link,a:visited {
+	color: #894336;
+	text-decoration: underline;
+	font-size: 14px;
+}
+
+.blog_content a:hover {
+	color: #CC0000;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+/* CSS blog内容右 */
+.blog_r{
+float:right;
+margin: 0px;padding:0px;border: 0px;
+width: 239px;
+}
+
+/* CSS blog文章 */
+.blog_wenzhang{clear:both;
+margin: 0px auto 0px auto;color: #666;line-height: 23px;
+width: 620px;
+text-align:left;
+padding:20px 0px 10px 10px;
+}
+.blog_wenzhang ul,li{
+margin: 0px;
+padding-top: 0px;
+list-style:none;
+}
+.blog_wenzhang p{
+text-indent: 0em;
+margin: 5px;
+padding: 5px 0px 5px 0px;
+}
+/* CSS  个人档案 */
+.blog_pic{float:left;margin: 0px auto 0px auto;width:120px;padding:10px 0px 10px 0px;}
+.blog_jianjie{float:right;margin: 0px auto 0px auto;width:117px;padding:10px 0px 10px 0px;text-align:left;line-height: 20px;}
+
+/* CSS  博客公告 */
+.blog_gonggao{margin: 0px auto 0px auto;width:210px;color: #666;padding:10px 0px 10px 0px;text-align:left;line-height: 20px;}
+
+/* CSS  最新评论 */
+.blog_pinglun{margin: 0px auto 0px 10px;width:200px;color: #666;padding:3px 10px 0px 0px;text-align:left;line-height: 20px;}
+
+/* CSS  更多评论 */
+.blog_more{margin: 0px auto 0px 10px;width:200px;color: #666;padding:10px 10px 0px 0px;text-align:right;line-height: 20px;}
+
+/* CSS  友情链接 */
+.blog_youqinglj{margin: 0px auto 0px auto;width:150px;color: #666;padding:8px 50px 0px 0px;text-align:left;line-height: 10px;}
+
+/* CSS  博客列表*/
+
+.blog_list{
+	padding:20px 0px 10px 20px;
+	margin: 0px auto;
+	color: #666;
+	line-height: 26px;
+	width: 610px;
+	font-size: 10px;
+	text-align:left;
+	font-family: Arial;
+}
+/* CSS  时间*/
+.list_time{font-size: 12px;color:#666;font-weight: normal;}
+.zhengwen_time{font-size: 10px;color:#666;font-family: Arial;}
+
+/* CSS  翻页*/
+.list_fanye{margin: 15px auto;text-align:right;width: 410px;height:30px;padding:0px 0px 0px 200px;}
+.list_fanye_bg{float:left;margin: auto 3px;padding:3px 0px 0px 0px;text-align:center;width:20px;height:17px;background-color: #FFF;border:1px solid #CCC;color: #666;}
+.list_fanye_bg01{float:left;margin: auto 3px;padding:3px 0px 0px 0px;text-align:center;width:53px;height:17px;background-color: #FFF;border:1px solid #CCC;color: #666;}
+
+/* CSS  文章正文*/
+.blog_zhengwen{
+	padding:20px 0px 10px 20px;
+	font-size: 14px;
+	margin: 0px auto;
+	line-height: 26px;
+	width: 610px;
+	text-align:left;
+}
+
+.blog_zhengwen p{
+text-indent: 2em;
+margin: 8px;
+padding: 0px;}
+
+/* CSS  文章评论*/
+.blog_pinglun_main{
+margin: 0px auto;
+width: 620px;
+text-align:center;
+padding:0px;
+}
+.blog_pinglun_pic{
+float: left; 
+margin: 0px auto;
+width: 80px;
+text-align:center;
+padding:0px;
+}
+.blog_pinglun_ph{
+border:1px solid #CCC;
+margin: 0px auto;
+width: 50px;height:50px;
+text-align:center;
+padding:3px;
+}
+.blog_pinglun_name{
+margin: 0px auto;
+width: 50px;height:24px;
+text-align:center;
+padding:3px;
+}
+.blog_pinglun_text{
+float: right; 
+margin: 0px auto;
+width: 530px;
+text-align:left;
+padding:0px;
+}
+.blog_fabiaopl{
+margin: 20px auto;color: #999;
+width: 620px;
+text-align:left;
+padding:0px;
+}
+.blog_fabiaopl p{
+text-indent: 0em;
+margin: 10px;
+padding: 0px;
+}
+
+.blog_input_bg{
+width: 82px;
+height:23px;padding-left:25px;
+background: url(http://i.blog.edu.cn/img/tpl/input_bg.gif);border:0px;}
+.right{ float: right; height: 18px;padding-right: 8px;padding-top: 0px;}
+.left{ float: left;  height: 18px;	padding-top: 0px;}
+
+.blog_right_grzl{
+width: 210px;padding-top:10px; }
+
+/* 最上面登录框 by indraw */
+.regform { 
+margin:0px; 
+padding-top:12px; 
+display:inline; line-height:12px;
+}
+.loginDiv1 { 
+padding-top:2px; 
+display:inline; 
+line-height:30px; 
+}
+
+/*-------新增加CSS-------------*/
+
+.zjlf{margin: 0px auto 0px auto;width:200px;color: #666;padding:10px 0px 0px 0px;text-align:left;line-height: 20px;}
+
+.blog_zjlf{
+float: left; 
+margin: 10px 0px 0px 12px ;
+width: 90px;
+text-align:center;
+}
+a.zjlf_name:link,a.zjlf_name:visited {
+	color: #333;
+	text-decoration: underline;
+	font-size: 12px;
+}
+
+a.zjlf_name:hover {
+	color: #FF0000;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.blog_zjlf_name{
+margin: 0px auto;
+width: 50px;height:20px;
+text-align:center;
+padding:3px;
+}

@@ -1,0 +1,75 @@
+#include <algorithm> 
+#include <cctype> 
+#include <cmath> 
+#include <cstdio> 
+#include <cstdlib> 
+#include <cstring> 
+#include <ctime> 
+#include <functional> 
+#include <iostream> 
+#include <map> 
+#include <numeric> 
+#include <queue> 
+#include <set> 
+#include <sstream> 
+#include <string> 
+#include <vector> 
+
+using namespace std; 
+
+#define VAR( a, b ) typeof(b) a = (b) 
+#define FOREACH( it, c ) for( VAR( it, (c).begin()); it != (c).end(); ++it ) 
+
+const int MOD = 1000000007; 
+
+int choose[51][51]; 
+map< pair<int, int>, int > Mpower; 
+map< pair<int, int>, int > M; 
+
+int power( int n, int k ) { 
+    long long res = 1; 
+
+    while( k-- )  
+        res = ( res * n ) % MOD; 
+
+    return ( int )res; 
+} 
+
+int calc( int n, int k ) { 
+    if( n == 1 ) 
+        return 1; 
+    if( M.count( make_pair( n, k ) ) ) 
+        return M[ make_pair( n, k ) ]; 
+
+    long long res; 
+
+    if( n%2 ) { 
+        res = calc( n - 1, k ); 
+        res = ( res + power( n, k ) ) % MOD; 
+    } else { 
+        res = ( calc( n / 2, k ) * 2 ) % MOD; 
+        for( int i = 1; i <= k; ++i ) { 
+            long long z = ( ( long long )choose[k][i] * power( n / 2, i ) ) % MOD; 
+            long long zz = ( z * calc( n / 2, k - i ) ) % MOD; 
+            res = ( res + zz ) % MOD; 
+        } 
+    } 
+
+    return M[ make_pair( n, k ) ] = ( int )res; 
+} 
+
+class SumOfPowers { 
+public: 
+    int value(int n, int k) { 
+        for( int i = 0; i <= k; ++i ) { 
+            choose[i][0] = 1; 
+            for( int j = 1; j <= i; ++j ) 
+                choose[i][j] = ( choose[i-1][j-1] + choose[i-1][j] ) % MOD; 
+        } 
+
+        return calc( n, k ); 
+    } 
+     
+  
+}; 
+

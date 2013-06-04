@@ -1,0 +1,69 @@
+class ContiguousSubsequences{
+public:
+	vi findMaxAverage(vi a,int K)
+	{
+		for(int i=0;i<51;i++) imax[i]=-1;
+		memset(iind,-1,sizeof(iind));
+
+		int n=sz(a);
+		for(int i=0;i<n;i++)
+		{	debug(i)
+			int itmp=0;
+			if(i+K>=n+1) continue;
+			for(int k=0;k<K;k++)
+				itmp+=a[i+k];
+			imax[i]=(float)itmp/K;
+			iind[i]=i+K-1;
+			debug(itmp)
+			for(int j=i+K;j<n;j++)
+			{	debug(j)
+				itmp+=a[j];
+				float max=(float)itmp/(j-i+1);
+				if(max>imax[i])
+				{
+					imax[i]=max;
+					iind[i]=j;
+					debug(max)
+				}
+				if(max==imax
+				[i])
+				{  iind[i]=j;}
+			}
+		}
+		for(int i=0;i<n;i++)
+		 { cout<<imax[i]<<" ";}
+		cout<<endl;
+		for(int i=0;i<n;i++)
+		{ cout<<iind[i]<<" ";}
+		
+		 
+		int resi,resj;
+		float max=imax[0];
+		resi=0;
+		resj=iind[0];
+		for(int i=0;i<n;i++)
+		{
+			if(max<imax[i])
+			{
+				max=imax[i];
+				resi=i;
+				resj=iind[i];
+			}
+			if(max==imax[i])
+			{
+				if(iind[i]-i>resj-resi)
+				{   debug(resi)
+					debug(resj)
+					resi=i;
+					resj=iind[i];
+					debug(resi)
+					debug(resj)
+				}
+			}
+		}
+		vi res;
+		res.pb(resi);
+		res.pb(resj);
+		return res;
+	}
+};

@@ -1,0 +1,80 @@
+class ToolsBox{
+public:
+	int countTools(vector<string> need)
+	{
+		set<string> ret;
+		string nd;
+		int i,j;
+		for(i=0;i<need.size();i++)
+		  nd=need[i]+" ";
+		i=j=0;
+		for(j=0;j<nd.size();j++)
+		  if(nd[j]==' ' && i!=j)
+		  {
+			  ret.insert(nd.substr(i,j));
+			  i=j+1;
+		  }
+		return ret.size();
+	}
+};
+
+int INF=100000;
+class MazeMaker{
+public:
+	int M;
+	int N;
+	int E[300][300];
+
+	int longestPath(vector <string> maze, int startRow, int startCol, vector <int> moveRow, vector <int> moveCol)
+	{
+		M=maze.size();
+		N=maze[0].size();
+		debug(M)
+		debug(N)
+		for(int i=0;i<300;i++)
+		  for(int j=0;j<300;j++)
+		  {
+			E[i][j]=INF;
+	    	if(i==j)
+			  E[i][j]=1;
+		  }
+		for(int i=0;i<M;i++)
+		  for(int j=0;j<N;j++)
+			for(int k=0;k<moveRow.size();k++)
+			{
+			    if(maze[i][j]=='X') continue;
+				int s=i*N+j;
+				int x,y;
+				x=i+moveRow[k];
+				y=j+moveCol[k];
+
+				if(x<0 || x>=M || y<0 || y>=N) continue;
+				if(maze[x][y]=='X') continue;
+				int t=x*N+y;
+				E[s][t]=1;
+				E[t][s]=1;
+			}
+	
+		int MN=M*N;
+		for(int k=0;k<MN;k++)
+		  for(int i=0;i<MN;i++)
+			for(int j=0;j<MN;j++)
+			  if(E[i][j]>E[i][k]+E[k][j])
+				E[i][j]=E[i][k]+E[k][j];
+	
+		int start=startRow*N+startCol;
+		int ret=-1;
+		for(int i=0;i<M;i++)
+		for(int j=0;j<N;j++) if(maze[i][j]!='X'){ // note the condition!
+		  int ter=i*N+j;
+		  if(ret<E[start][ter])
+		  { 
+			ret=E[start][ter];
+		  }
+		}
+		if(ret==INF)
+		  ret=-1;
+		return ret;
+	}
+};
+

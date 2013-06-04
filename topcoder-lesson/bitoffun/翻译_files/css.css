@@ -1,0 +1,308 @@
+/* CSS 通用 */
+
+body {
+font-size: 12px;
+color: #333333;
+text-align:center; 
+line-height: 15px;
+margin: 1px;background-color: #FFF;
+}
+
+h1{font-size: 30px;line-height: 25px;color:#007B00;font-weight:bold;margin:0px auto;}
+h2{font-size: 14px;color:#009900;font-weight: normal;margin:0px auto;line-height: 40px;}
+h3{margin:0px;font-size: 14px;color:#005700;font-weight: bold;}
+h4{font-size: 14px;color:#835249;font-weight: bold;margin:0px auto;line-height: 40px;}
+h5{font-size: 16px;color:#452C27;font-weight: bold;margin:0px auto;line-height: 40px;}
+h6{font-size: 14px;color:#007B00;font-weight:bold;margin:0px auto;line-height: 20px;}
+.body_riqi{
+font-size: 12px;color:#7AD57A;font-weight: normal;}
+.body_huifu{
+font-size: 12px;color:#333;font-weight: bold;}
+.body_shuzi{font-size: 10px;color:#43AD48;font-weight: normal;font-family: Arial;}
+a.body_dl:link,a.body_dl:visited {
+color: #006000;
+text-decoration: underline;
+font-size: 12px;
+}
+
+a.body_dl:hover {
+color: #FF0000;
+text-decoration: none;
+font-size: 12px;
+} 
+
+a.body_biaoti:link,a.body_biaoti:visited {
+color: #43AD48;
+text-decoration: underline;
+font-size: 14px;font-weight: bold;
+}
+
+a.body_biaoti:hover {
+color: #FF9900;
+text-decoration: none;
+font-size: 14px;font-weight: bold;
+}
+ 
+a.body_name:link,a.body_name:visited {
+color: #006000;
+text-decoration: none;
+font-size: 12px;font-weight: bold;
+}
+
+a.body_name:hover {
+color: #006000;
+text-decoration: underline;
+font-size: 12px;font-weight: bold;
+} 
+
+a.body_915C51:link,a.body_915C51:visited {
+color: #43AD48;
+text-decoration: underline;
+font-size: 12px;
+}
+
+a.body_915C51:hover {
+color: #43AD48;
+text-decoration: none;
+font-size: 12px;
+} 
+
+a:link,a:visited {
+color: #333333;
+text-decoration: none;
+font-size: 12px;
+}
+
+a:hover {
+color: #FF0000;
+text-decoration: none;
+font-size: 12px;
+}
+
+a.red:link,a.red:visited {
+	color: #7AD57A;
+	text-decoration: underline;
+	font-size: 12px;
+}
+
+a.red:hover {
+	color: #FF9900;
+	text-decoration: underline;
+	font-size: 12px;
+}
+
+a.black:link,a.black:visited {
+	color: #333;
+	text-decoration: underline;
+	font-size: 12px;
+}
+
+a.black:hover {
+	color: #CC0000;
+	text-decoration: underline;
+	font-size: 12px;
+}
+
+
+.input_03 {
+	background-color: #FFF;width: 150px;
+	border: 1px solid #39AA39;
+}
+.input_04{
+	background-color: #FFF;width: 600px;height: 100px;
+	border: 1px solid #CCC;
+}
+
+
+/*______博客图片背景及名称_____*/
+
+.top_bg{
+	margin: 0px;
+	width: 100%;
+	background-image: url(http://i.blog.edu.cn/tpl3/i/bg_guanfang.jpg);
+	background-repeat: no-repeat;
+	background-position: top center;
+	
+}
+
+.top_biaoti{
+margin: 0px auto 0px auto;
+border: 0px;
+width: 900px;height: 120px;
+padding:80px 0px 0px 50px;text-align:left; 
+}
+/*______博客导航_____*/
+
+.top_daohang_l{
+float:left;color:#006000;font-weight: normal;font-size: 14px;
+width: 648px;height: 25px;text-align:left;
+padding:10px 0px 0px 55px;
+background-image: url(http://i.blog.edu.cn/tpl3/i/daohang_l.jpg);
+}
+
+.top_daohang_l a:link,.top_daohang_l a:visited {
+	color: #006000;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.top_daohang_l a:hover {
+	color: #006000;
+	text-decoration: underline;
+	font-size: 14px;
+}
+
+.top_daohang_r{
+float:right;color:#006000;font-weight: bold;font-size: 14px;text-align:left;
+width: 247px;height: 28px;
+padding:7px 0px 0px 0px;
+background-image: url(http://i.blog.edu.cn/tpl3/i/daohang_r.jpg);
+}
+
+/*______博客内容_____*/
+
+.blog_main_l{
+float:left;text-align:center; 
+margin: 0px;padding-top:10px;
+border: 0px;
+width: 695px;
+border: 1px solid #6DDC67;background-color: #FFF;
+}
+
+.blog_main_r{
+text-align:center;
+margin: 0px auto 8px auto;padding-bottom:10px;
+border: 0px;
+width: 237px;
+border: 1px solid #6DDC67;background-color: #FFF;
+}
+.blog_biaoti{
+margin: 0px auto 0px auto;
+width: 630px;
+height:20px;
+text-align:left;
+padding:7px 0px 0px 7px;
+background-image: url(http://i.blog.edu.cn/tpl3/i/line_bg.jpg);
+}
+
+.blog_line{
+margin: 0px auto 0px auto;
+width: 630px;
+height:10px;
+background-image: url(http://i.blog.edu.cn/tpl3/i/line_bg01.jpg);
+}
+.blog_line01{
+margin: 0px auto 0px auto;
+width: 221px;
+height:10px;
+background-image: url(http://i.blog.edu.cn/tpl3/i/line_bg01.jpg);
+}
+.blog_biaoti01{
+margin: 0px auto 0px auto;
+width: 219px;
+height:22px;
+text-align:left;
+padding:15px 0px 0px 7px;
+background-image: url(http://i.blog.edu.cn/tpl3/i/line_bg02.jpg);
+}
+
+.blog_fabiao{margin: 0px auto 0px auto;width:200px;color: #666;padding:10px 10px 0px 0px;text-align:left;line-height: 20px;}
+.blog_fabiao li{padding-left:20px;padding-top:2px;background:url(http://i.blog.edu.cn/tpl3/i/icon_fabiao.gif) no-repeat;}
+.blog_fabiao li a:link,.blog_fabiao li a:visited {color: #666;text-decoration: none;font-size: 12px;}
+.blog_fabiao li a:hover {color: #CC0000;text-decoration: none;font-size: 12px;}
+
+.fenlei_bg{
+margin: 0px auto 0px auto;font-size: 12px;color:#43AD48;
+width: 207px;
+height:26px;
+text-align:left;
+padding:12px 0px 0px 10px;
+background-image: url(http://i.blog.edu.cn/tpl3/i/fenlei_bg.jpg);
+}
+.fenlei_bg a:link,.fenlei_bg a:visited {
+	color: #43AD48;
+	text-decoration: none;
+	font-size: 12px;
+}
+
+.fenlei_bg a:hover {
+	color: #43AD48;
+	text-decoration: underline;
+	font-size: 12px;
+}
+.rili_bg {
+	background-color: #FFF;
+	border: 1px dotted #30B129;
+}
+.rili_bg01 {
+	background-color: #BCE9BC;
+	border: 1px solid #FFF;
+}
+.bottom_bg{
+clear:both;
+margin: 0px auto 10px auto;padding:15px 0px 0px 0px;
+border: 0px;line-height: 20px;
+width: 100%;height:64px;
+background-image: url(http://i.blog.edu.cn/tpl3/i/bottom_bg.jpg);
+color: #666;	
+}
+
+/*______博客列表_____*/
+.blog_list li{
+padding-left:15px;padding-top:2px;
+background:url(http://i.blog.edu.cn/tpl3/i/dot.gif) no-repeat;}
+
+.blog_list li a:link,.blog_list li a:visited {
+	color: #307A34;
+	text-decoration: underline;
+	font-size: 14px;
+}
+.blog_list li a:hover {color: #FF9900;text-decoration: none;font-size: 14px;}
+
+.list_fanye_bg_dq{float:left;margin: auto 3px;padding:3px 0px 0px 0px;text-align:center;width:20px;height:17px;background-color: #BCE9BC;border:1px solid #30B129;color: #005700;font-weight: bold;}
+
+/*______博客正文_____*/
+
+.blog_zhengwen_biaoti{color: #006600;font-size: 16px;font-weight:bold;margin: 0px auto;line-height: 40px;}
+
+a.blog_zhengwen894:link,a.blog_zhengwen894:visited {
+	color: #358839;
+	text-decoration: underline;
+	font-size: 14px;
+}
+
+a.blog_zhengwen894:hover {
+	color: #FF9900;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+/*______博客评论_____*/
+
+.blog_zhengwen_pinglun{
+margin: 15px auto;
+width: 650px;height:24px;
+text-align:left;
+padding:5px 0px 0px 20px;
+background-image: url(http://i.blog.edu.cn/tpl3/i/pinglun_bg.jpg);}
+
+.blog_pinglun_line{
+margin: auto auto 10px auto;
+width: 650px;
+height:10px;
+background-image: url(http://i.blog.edu.cn/tpl3/i/line_bg01.jpg);}
+
+.blog_input_bg{
+width: 82px;
+height:23px;padding-left:25px;
+background: url(http://i.blog.edu.cn/tpl1/i/input_bg.gif);border:0px;}
+a.body_plbt:hover {
+color: #FF0000;
+text-decoration: none;
+font-size: 12px;
+} 
+a.body_plbt:link,a.body_plbt:visited {
+color: #990000;
+text-decoration: underline;
+font-size: 12px;
+}

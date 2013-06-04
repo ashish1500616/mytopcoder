@@ -1,0 +1,130 @@
+using namespace std; 
+
+typedef complex<double> point; 
+typedef complex<double> Vector; 
+typedef pair<point, point> Segment; 
+typedef pair<int, int> pii; 
+typedef pair<int, string> pis; 
+typedef vector<int> vi; 
+typedef vector<vi> vvi; 
+typedef vector<vvi> vvvi; 
+typedef vector<long long> vLL; 
+typedef vector<pii> vpii; 
+typedef vector<string> vs; 
+typedef pair<pii, pii> ppii; 
+typedef long long LL; 
+typedef long double LD; 
+
+#define f(i, n)          for(int i = 0; i < n; i++) 
+#define fo(i, a, b)        for(int i = a; i <= b; i++) 
+#define fx(it, x)        for(typeof((x).begin()) it = (x).begin(); it != (x).end();++it) 
+#define popcount(n)        __builtin_popcount(n) 
+#define clz(n)          __builtin_clz(n) 
+#define ctz(n)          __builtin_ctz(n) 
+#define gcd(a, b)        __gcd(a, b) 
+#define X            real() 
+#define Y            imag() 
+#define nom            first 
+#define den            second 
+#define sz(a)          (int(a.size())) 
+#define pb            push_back 
+#define all(v)          v.begin(), v.end() 
+#define PI            acos(-1.0) 
+#define EPS            1e-9 
+#define EQ(a, b)        (abs(a - b) < eps) 
+#define sqr(a)          ((a) * (a)) 
+#define cl(x, el)        memset(x, el, sizeof(x)) 
+#define wait          system("pause") 
+#define Get_Time(time)      (double)((double)(clock() - time) / (double)CLOCKS_PER_SEC) 
+#define INF            (1e60) 
+#define MAX            (1 << 28) 
+#define MIN            (- MAX) 
+#define MAX_N          (15) 
+
+inline LL strtoint(const string &s) {stringstream ss;ss<<s;LL ret;ss>>ret;return ret;} 
+inline string inttostr(const LL &a) {stringstream ss;ss<<a;string ret;ss>>ret;return ret;} 
+
+
+vi states; 
+int dp[1 << MAX_N]; 
+
+
+class CollectingMarbles 
+{ 
+public: 
+
+int mostMarbles(vector <int> marblesWeights, int bagCapacity, int numberOfBags) 
+{ 
+int N = sz(marblesWeights); 
+int ret = 0; 
+   
+   
+  f(i, 1 << N) dp[i] = MAX; 
+   
+  dp[0] = 0; 
+   
+  f(mask, 1 << N) 
+  { 
+    int sum = 0; 
+     
+    f(i, N) if(mask & (1 << i)) sum += marblesWeights[i]; 
+     
+    if(sum <= bagCapacity) 
+    { 
+      f(i, 1 << N) if(!(i & mask) && dp[i] < numberOfBags) 
+      { 
+        dp[i | mask] = min(dp[i | mask], dp[i] + 1); 
+      } 
+    } 
+  } 
+   
+  f(mask, 1 << N) if(dp[mask] <= numberOfBags) ret = max(ret, popcount(mask)); 
+   
+   
+  return ret; 
+} 
+
+};
+
+
+public class CollectingMarbles { 
+    public int mostMarbles(int[] marblesWeights, int bagCapacity, int numberOfBags) { 
+        v = marblesWeights; 
+        n = numberOfBags; 
+        c = bagCapacity; 
+        cc = new int[n]; 
+        go(0, 0); 
+        return ans; 
+    } 
+
+    private void go(int i, int cnt) { 
+        if(ans == v.length) { 
+            return; 
+        } 
+        if(i == v.length) { 
+            if(cnt > ans) { 
+                ans = cnt; 
+            } 
+            return; 
+        } 
+        boolean[] mask = new boolean[21]; 
+        for(int j = 0; j < n; ++j) { 
+            if(!mask[cc[j]]) { 
+                mask[cc[j]] = true; 
+                if(cc[j] + v[i] <= c) { 
+                    cc[j] += v[i]; 
+                    go(i + 1, cnt+1); 
+                    cc[j] -= v[i]; 
+                } 
+            } 
+        } 
+        go(i + 1, cnt); 
+    } 
+
+    int ans = 0; 
+
+    int[] v; 
+    int[] cc; 
+    int c; 
+    int n; 
+}

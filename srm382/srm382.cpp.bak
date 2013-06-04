@@ -1,0 +1,95 @@
+class ContiguousSubsequences{
+public:
+	vi findMaxAverage(vi a,int K)
+	{
+		int n=sz(a);
+		double best=0.0;
+		int begin=0;length=0;
+		for(int i=0;i<n;i++)
+		  for(int j=i;j<n;j++)
+			if(j-i+1>=K){
+				int sum=0;
+				for(int m=i;m<=j;m++)
+				  sum+=a[m];
+				double curr=(0.0+sum)/(0.0+(j-i+1.0));
+				if(curr>best)
+				{
+					best=curr;
+					begin=i;
+					length=j;
+				}
+				else if(fabs(curr-best)<1e-9){
+					if(j-i>length-begin)
+					  begin=i,length=j;
+				}
+			}
+		vector<int> res;
+		res.pb(begin);
+		res.pb(length);
+		return res;
+	}
+};
+			
+
+
+class ContiguousSubsequences{
+public:
+	vi findMaxAverage(vi a,int K)
+	{
+		for(int i=0;i<51;i++) imax[i]=-1;
+		memset(iind,-1,sizeof(iind));
+
+		int n=sz(a);
+		for(int i=0;i<n;i++)
+		{	
+			int itmp=0;
+			if(i+K>=n+1) continue;
+			for(int k=0;k<K;k++)
+				itmp+=a[i+k];
+			imax[i]=(float)itmp/K;
+			iind[i]=i+K-1;
+			
+			for(int j=i+K;j<n;j++)
+			{	
+				itmp+=a[j];
+				float max=(float)itmp/(j-i+1);
+				if(max>imax[i])
+				{
+					imax[i]=max;
+					iind[i]=j;
+					debug(max)
+				}
+				if(max==imax[i])
+				{  iind[i]=j;}
+			}
+		}
+
+		 
+		int resi,resj;
+		float max=imax[0];
+		resi=0;
+		resj=iind[0];
+		for(int i=0;i<n;i++)
+		{
+			if(max<imax[i])
+			{
+				max=imax[i];
+				resi=i;
+				resj=iind[i];
+			}
+			if(max==imax[i])
+			{
+				if(iind[i]-i>resj-resi)
+				{   
+					resi=i;
+					resj=iind[i];
+					
+				}
+			}
+		}
+		vi res;
+		res.pb(resi);
+		res.pb(resj);
+		return res;
+	}
+};

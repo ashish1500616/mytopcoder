@@ -1,0 +1,98 @@
+class SoccerLeagues{
+public:
+	vector <int> points(vector <string> matches)
+	{
+		vector<int> res;
+		int n=matches.size();
+		for(int i=0;i<n;i++)
+		{
+			int s=0;
+			for(int j=0;j<n;j++)
+			{
+				if(i==j)continue;
+				if(matches[i][j]=='W') s+=3;
+				if(matches[i][j]=='D') s+=1;
+			}
+			for(int j=0;j<n;j++)
+			{
+				if(i==j)continue;
+				if(matches[j][i]=='L') s+=3;
+				if(matches[j][i]=='D') s+=1;
+			}
+			res.push_back(s);
+		}
+		return res;
+	}
+};
+
+
+
+
+class CirclesCountry{
+public:
+	int leastBorders(vector <int> X, vector <int> Y, vector <int> R, int x1, int y1, int x2, int y2){
+		int sn,tn,dn;
+		sn=tn=0;
+		int n=sz(X);
+		for(int i=0;i<n;i++){
+			if(incircle(x1,y1,X[i],Y[i],R[i])) sn++;
+			if(incircle(x2,y2,X[i],Y[i],R[i])) tn++;
+			if(incircle(x1,y1,X[i],Y[i],R[i])&&incircle(x2,y2,X[i],Y[i],R[i])) dn++;
+		}
+		int res;
+		res=sn+tn-dn;
+
+	}
+	bool incircle(int x,int y,int cx,int cy,int cr){
+		int d2=(x-cx)*(x-cx)+(y-cy)*(y-cy);
+		if(d2<cr*cr) return true;
+		return false;
+	}
+};
+
+
+class Polygons2{
+public:
+	long long number(vector <int> segments, int K)
+	{
+		int n=segments.size();
+		int N=1<<n;
+		int res=0;
+		for(int i=0;i<N;i++)
+		{
+			int k=0;
+			vector<int> seg;
+			int ok=0;
+			for(int ii=0;ii<n;ii++)
+			{
+				if(1<<ii & i){
+					k++;
+					seg.pb(segments[ii]);
+				}
+	
+			}
+			if(k==K){
+				if(solve(seg))
+				  res++;
+			}
+
+		}
+
+	}
+	bool solve(vector<int> s)
+	{
+		int n=s.size();
+		sort(all(s));
+		int max=s.back();
+		s.pop_back();
+		int sum=0;
+
+		for(int i=0;i<s.size();i++)
+		{
+			sum+=s[i];
+		}
+		if(sum>max) return true;
+		return false;
+
+	}
+};

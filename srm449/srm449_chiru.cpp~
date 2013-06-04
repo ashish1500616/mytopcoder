@@ -1,0 +1,47 @@
+class MountainRoad{
+public:
+	double findDistance(vector <int> start, vector <int> finish){
+		vi cd;
+		vi c;
+		int n=sz(start);
+		for(int i=0;i<n;i++)
+		  for(int j=i+1;j<n;j++)
+		  {
+			  if(start[i]<start[j] && start[j]<finish[i])
+				cd.pb(finish[i]-start[i]);
+			  if(start[i]>start[j] && finish[i]<finish[j])
+				cd.pb(finish[i]-finish[i]);
+		  }
+		for(int i=0;i<n;i++)
+		  c.pb(finish[i]-start[i]);
+		double res=0;
+		double b=sqrt(2);
+		for(int i=0;i<sz(c);i++)
+		  res+=c[i]*b;
+		for(int i=0;i<sz(cd);i++)
+		  res-=c[i]*b;
+		return res;
+	}
+};
+
+class OddDivisors{
+public:
+	ll findSum(int N)
+	{
+		int odd=0,even=0;
+		odd=(N+1)/2;
+		even=N-odd;
+		ll res=0;
+		for(int i=0;i<odd;i++)
+		  res+=2*i+1;
+		for(int i=0;i<even;i++)
+		{
+			res+=2*i+1;
+			if(i%2==0)
+			  res++;
+		}
+		return res;
+	}
+};
+
+

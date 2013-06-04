@@ -1,0 +1,41 @@
+#include <algorithm>
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <cmath>
+#include <map>
+#include <queue>
+using namespace std;
+typedef vector<int> VI;
+ 
+struct SortingGame {
+  int fewestMoves(vector<int> board, int k) {
+    map<VI, int> dist;
+    dist[board] = 0;
+ 
+    queue<VI> Q;
+    Q.push(board);
+ 
+    int i, N = board.size();
+ 
+    while (!Q.empty()) {
+      VI u = Q.front(); Q.pop();
+      int d = dist[u];
+ 
+      for (i = 1; i < N; i++)
+        if (u[i-1] > u[i]) break;
+      if (i == N) return d;
+ 
+      for (i = 0; i + k <= N; i++) {
+        VI w = u;
+        reverse(w.begin() + i, w.begin() + i + k);
+        if (dist.count(w) == 0) {
+          dist[w] = d + 1;
+          Q.push(w);
+        }
+      }
+    }
+ 
+    return -1;    
+  }
+};

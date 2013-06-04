@@ -1,0 +1,387 @@
+class ProperDivisors { 
+  public: 
+  int fn1(int a,int b,int x){ 
+    int c=0; 
+    if(a<=x && b>=x) c=1; 
+    a=((a-1)/x+1)*x; 
+    b=(b/x)*x; 
+    return (b-a)/x+1; 
+  } 
+  int fn(int a,int b,int x){ 
+    int c=0; 
+    if(a<=x && b>=x) c=1; 
+    a=((a-1)/x+1)*x; 
+    b=(b/x)*x; 
+    return (b-a)/x+1-c; 
+  } 
+  int analyzeInterval(int a, int b, int n){ 
+    int x=int( pow(LD((a+b)*1.0),LD(1/(long double)(n))) + 0.0001); LL ret=0; 
+    //cout<<x<<" "; 
+    FOR(i,2,a+b+1){ 
+      ret+= LL(fn(a,a+b,i)); 
+      //cout<<fn(a,a+b,i)<< " "; 
+    } 
+    //cout<<ret<< " "; 
+    FOR(i,2,x+1){ 
+      ret-= fn1(a,a+b, int(pow(LD(i),LD(n))+0.0001)); 
+    } 
+    return int(ret); 
+  } 
+
+
+};
+// CentersOfSymmetry
+// ACRush
+class CentersOfSymmetry 
+{ 
+public: 
+  int n,A[60],B[60],C[60]; 
+  bool visited[60]; 
+  int lineConfigurations(vector <int> x1, vector <int> y1, vector <int> x2, vector <int> y2) 
+  { 
+    n=SZ(x1); 
+    for (int i=0;i<n;i++) 
+    { 
+      A[i]=+(y1[i]-y2[i]); 
+      B[i]=-(x1[i]-x2[i]); 
+      C[i]=x1[i]*y2[i]-x2[i]*y1[i]; 
+      if (A[i]<0 || A[i]==0 && B[i]<0)  
+      { 
+        A[i]=-A[i]; 
+        B[i]=-B[i]; 
+        C[i]=-C[i]; 
+      } 
+    } 
+    for (int i=0;i<n;i++) visited[i]=false; 
+    int result=0; 
+    double a1=0,b1=0,c1=0,x0=0,y0=0; 
+    for (int i=0;i<n;i++) if (!visited[i]) 
+    { 
+      int cnt=0; 
+      vector<double> pts; 
+      for (int j=i;j<n;j++) 
+        if (A[i]*B[j]==B[i]*A[j]) 
+        { 
+          visited[j]=true; 
+          cnt++; 
+          pts.push_back((double)C[j]/(double)sqrt((double)sqr(A[j])+(double)sqr(B[j]))); 
+        } 
+      sort(pts.begin(),pts.end()); 
+      double exp=pts[0]+pts[cnt-1]; 
+      bool bad=false; 
+      for (int k=0;k<cnt;k++) 
+        if (fabs(pts[k]+pts[cnt-1-k]-exp)>eps) 
+          bad=true; 
+      if (bad) 
+        return 0; 
+      double a2=A[i]/(double)sqrt(sqr(A[i])+(double)sqr(B[i])); 
+      double b2=B[i]/(double)sqrt(sqr(A[i])+(double)sqr(B[i])); 
+      double c2=exp/2.0; 
+      if (result==0)  
+      { 
+        result=1; 
+        a1=a2; 
+        b1=b2; 
+        c1=c2; 
+      } 
+      else if (result==1) 
+      { 
+        result=2; 
+        double t=a1*b2-a2*b1; 
+        x0=+(b1*c2-b2*c1)/t; 
+        y0=-(a1*c2-a2*c1)/t; 
+      } 
+      else if (result==2) 
+      { 
+        if (fabs(a2*x0+b2*y0+c2)>eps) 
+          return 0; 
+      } 
+    } 
+    if (result<=1) return -1; 
+    return 1; 
+  } 
+};
+
+
+//
+#define forn(i, n) for (int i = 0; i < (int)(n); i++) 
+#define sz(a) (int)(a).size() 
+
+typedef long long ll; 
+typedef vector <int> vi; 
+
+#define maxn 53 
+#define eps 1e-6 
+
+typedef long double dbl; 
+
+dbl a[maxn], b[maxn], c[maxn]; 
+int u[maxn]; 
+
+struct pnt 
+{ 
+  dbl x, y; 
+  pnt( dbl _x = 0, dbl _y = 0 ) { x = _x, y = _y; } 
+}; 
+
+bool operator < ( pnt a, pnt b ) 
+{ 
+  if (fabs(a.x - b.x) > eps) 
+    return a.x < b.x; 
+  return a.y + eps < b.y; 
+} 
+
+int Par( int i, int j ) 
+{ 
+  return fabs(a[i] - a[j]) < eps && fabs(b[i] - b[j]) < eps; 
+} 
+
+class CentersOfSymmetry 
+{ 
+public: 
+  int lineConfigurations(vector <int> x1, vector <int> y1, vector <int> x2, vector <int> y2) 
+  { 
+    int n = sz(x1); 
+    forn(i, n) 
+    { 
+      a[i] = y1[i] - y2[i]; 
+      b[i] = x2[i] - x1[i]; 
+      double no = sqrt(a[i] * a[i] + b[i] * b[i]); 
+      a[i] /= no, b[i] /= no; 
+      if (a[i] < -eps || (a[i] < eps && b[i] < -eps)) 
+        a[i] = -a[i], b[i] = -b[i]; 
+      c[i] = -(a[i] * x1[i] + b[i] * y1[i]); 
+    } 
+     
+    int s = 0, t = -1; 
+    forn(i, n) 
+      if (!Par(i, s)) 
+        t = i; 
+    if (t == -1) 
+    { 
+      sort(c, c + n); 
+      int f = 1; 
+      forn(i, n) 
+        if (fabs(c[i] + c[n - i - 1] - c[n - 1] - c[0]) > eps) 
+          f = 0; 
+      return f ? -1 : 0; 
+    } 
+    else 
+    { 
+      set <pnt> ans; 
+      forn(i, n) 
+        forn(j, n) 
+          if (Par(i, s) && Par(j, t)) 
+          { 
+            dbl a1 = a[i], b1 = b[i], c1 = (c[i] + c[s]) / 2; 
+            dbl a2 = a[j], b2 = b[j], c2 = (c[j] + c[t]) / 2; 
+            dbl x, y; 
+            x = -(c1 * b2 - c2 * b1) / (a1 * b2 - a2 * b1); 
+            y = -(c1 * a2 - c2 * a1) / (b1 * a2 - b2 * a1); 
+             
+            int f = 1; 
+            memset(u, 0, sizeof(u)); 
+            forn(k, n) 
+              if (!u[k]) 
+              { 
+                forn(t, n) 
+                  if (!u[t] && Par(k, t) && fabs(a[k] * x + b[k] * y + (c[k] + c[t]) / 2) < eps) 
+                  { 
+                    u[k] = u[t] = 1; 
+                    break; 
+                  } 
+                if (!u[k]) 
+                  f = 0; 
+              } 
+            if (f) 
+              ans.insert(pnt(x, y)); 
+          } 
+       return ans.size(); 
+    }     
+  } 
+};
+
+
+
+
+
+using System; 
+using System.Collections.Generic; 
+
+public class CentersOfSymmetry { 
+  public int lineConfigurations(int[] _x1, int[] _y1, int[] _x2, int[] _y2) { 
+        long n = _x1.Length; 
+        long[] dx = new long[n]; 
+        long[] dy = new long[n]; 
+        long[] x1 = new long[n]; 
+        long[] y1 = new long[n]; 
+        long[] x2 = new long[n]; 
+        long[] y2 = new long[n]; 
+        for (long i = 0; i < n; ++i) 
+        { 
+            x1[i] = _x1[i]; 
+            x2[i] = _x2[i]; 
+            y1[i] = _y1[i]; 
+            y2[i] = _y2[i]; 
+            dx[i] = x2[i] - x1[i]; 
+            dy[i] = y2[i] - y1[i]; 
+        } 
+        bool[] mark = new bool[n]; 
+        long state = 0; 
+        long la = 0; 
+        long lb = 0; 
+        long lc = 0; 
+        long xp = 0; 
+        long yp = 0; 
+        long q = 0; 
+        for (int i = 0; i < n; ++i) 
+            if (!mark[i])  
+            { 
+                long cdx = dx[i]; 
+                long cdy = dy[i]; 
+                List<long> at = new List<long>(); 
+                for (int j = 0; j < n; ++j) 
+                    if (dx[j] * cdy == dy[j] * cdx) 
+                    { 
+                        mark[j] = true; 
+                        at.Add(x1[j] * cdy - y1[j] * cdx); 
+                    } 
+                at.Sort(); 
+                long sum = at[0] + at[at.Count - 1]; 
+                bool ok = true; 
+                for (int j = 0; j < at.Count; ++j) 
+                    if (at[j] + at[at.Count - 1 - j] != sum) 
+                        ok = false; 
+                if (!ok) 
+                    return 0; 
+                long ma = 2 * cdy; 
+                long mb = -2 * cdx; 
+                long mc = -sum; 
+                switch (state) 
+                { 
+                    case 0: 
+                        state = 1; 
+                        la = ma; 
+                        lb = mb; 
+                        lc = mc; 
+                        break; 
+
+                    case 1: 
+                        long z = la * mb - lb * ma; 
+                        q = z; 
+                        xp = -(lc * mb - lb * mc); 
+                        yp = -(la * mc - lc * ma); 
+                        state = 2; 
+                        break; 
+
+                    case 2: 
+                        if (ma * xp + mb * yp + mc * q != 0) 
+                            state = 3; 
+                        break; 
+                } 
+            } 
+        switch (state) 
+        { 
+            case 0: 
+            case 1: 
+                return -1; 
+
+            case 2: 
+                return 1; 
+
+            case 3: 
+                return 0; 
+        } 
+        return 0; 
+  } 
+
+
+
+} 
+
+
+
+
+// PseudoRandomKingdom
+// petr
+//using System; 
+
+public class PseudoRandomKingdom { 
+  public double probabilityOfHappiness(string[] g, int cost, int savings) { 
+        double[] r = dfs(g, 0, -1, cost, savings); 
+        double res = 0; 
+        foreach (double x in r) 
+            res += x; 
+        for (int i = 0; i < g.Length - 1; ++i) 
+            res /= (cost + 1); 
+        return res; 
+  } 
+
+    private double[] dfs(string[] g, int root, int parent, int cost, int savings) 
+    { 
+        double[] res = new double[savings + 1]; 
+        res[0] = 1; 
+        foreach (int x in Array.ConvertAll<string, int>(g[root].Split(' '), int.Parse)) 
+        { 
+            if (x == parent) 
+                continue; 
+            double[] that = dfs(g, x, root, cost, savings); 
+            double[] nres = new double[savings + 1]; 
+            for (int c = 0; c <= cost; ++c) 
+            { 
+                for (int u = 0; u + c <= savings; ++u) 
+                    for (int v = 0; u + v + c <= savings; ++v) 
+                    { 
+                        nres[Math.Max(u, v + c)] += res[u] * that[v]; 
+                    } 
+            } 
+            res = nres; 
+        } 
+        return res; 
+    } 
+
+
+
+} 
+
+// rem
+int n, c, m; 
+bool a[50][50] = {{false}}; 
+
+vd solve(int x, int par) { 
+  vd res(m+1, 0.0); 
+  res[0] = 1; 
+  Rep(i, n) { 
+    if (!a[x][i] || i == par) 
+      continue; 
+    vd v = solve(i, x); 
+    Ford(i, m, 0) { 
+      double s = 0; 
+      For(j, 0, c) 
+        if (i-j >= 0) 
+          s += v[i-j]/(c+1); 
+      v[i] = s; 
+    } 
+    vd nres(m+1, 0.0); 
+    For(p, 0, m) For(q, 0, m-p) 
+      nres[max(p, q)] += res[p]*v[q]; 
+    res = nres; 
+  } 
+  return res; 
+} 
+
+struct PseudoRandomKingdom { 
+  double probabilityOfHappiness(vs g, int cost, int savings) { 
+    n = Size(g); 
+    c = cost; 
+    m = savings; 
+    Rep(i, n) { 
+      istringstream iss(g[i]); 
+      int j; 
+      while (iss >> j)  
+        a[i][j] = true; 
+    } 
+    vd v = solve(0, -1); 
+    return accumulate(All(v), 0.0); 
+  } 
+};

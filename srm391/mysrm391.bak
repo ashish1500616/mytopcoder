@@ -1,0 +1,23 @@
+int m[10005];
+
+class SnowyWinter{
+public:
+	int snowyHighwayLength(vector <int> startPoints, vector <int> endPoints){
+		memset(m,0,sizeof(m));
+		int n=sz(startPoints);
+		for(int i=0;i<n;i++)
+		{
+			int s=startPoints[i];
+			int t=endPoints[i];
+			for(int j=s;j<=s;j++)
+			{
+				if(m[j]==0)
+				  m[j]=1;
+			}
+		}
+		int res=0;
+		for(int k=0;k<1005;k++)
+		  res+=m[k];
+		return res;
+	}
+};

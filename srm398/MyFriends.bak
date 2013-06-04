@@ -1,0 +1,149 @@
+#include <iostream> 
+#include <sstream> 
+#include <algorithm> 
+#include <iterator> 
+
+#include <cmath> 
+#include <cctype> 
+
+#include <string> 
+#include <vector> 
+#include <deque> 
+#include <list> 
+#include <set> 
+#include <map> 
+#include <queue> 
+#include <stack> 
+#include <numeric> 
+
+using namespace std; 
+
+#define FOREACH(iter, cont) for(typeof((cont).begin()) iter = (cont).begin(); iter != (cont).end(); iter++) 
+#define FOR(i, begin, end) for(int i = (begin); i < (end); i++) 
+#define CLEAR(arr) memset(arr, 0, sizeof(arr)) 
+
+const int INF = 999999999; 
+const int maxn = 52; 
+const double eps = 1e-9; 
+
+class MyFriends {  
+   public:  
+   string calcFriends(vector <int> sum, int k) {  
+     int n = sum.size(); 
+     int s = accumulate(sum.begin(), sum.end(), 0); 
+     if (s % (n-2) != 0) 
+      return "IMPOSSIBLE"; 
+
+     s /= n-2; 
+     FOREACH(x, sum) 
+       *x = s-*x; 
+
+     vector<int> d(n); 
+     FOR(i, 0, n) { 
+       int x = 0; 
+       int j = i; 
+       int q = 1; 
+       do { 
+         x += q*sum[j]; 
+         j = (j+k) % n; 
+         q = -q; 
+       } while (j != i); 
+
+       if (x < 0 || x % 2 != 0) 
+         return "IMPOSSIBLE"; 
+       d[i] = x/2; 
+
+     } 
+
+     /* 
+     FOR(i, 0, n) 
+       cout << i << ": " << d[i] << endl;  
+       */ 
+
+     while (d.size() > 0) { 
+      sort(d.rbegin(), d.rend()); 
+      if (d[0] >= d.size() || (d[0] > 0 && d[d[0]] == 0)) 
+        return "IMPOSSIBLE"; 
+      FOR(i, 0, d[0]) 
+        d[i+1]--; 
+      d.erase(d.begin()); 
+     } 
+
+     return "POSSIBLE";   
+       
+   }  
+    
+  
+};  
+
+
+
+
+import java.util.*;
+ 
+public class MyFriends {
+    String BAD = "IMPOSSIBLE";
+    String GOOD = "POSSIBLE";
+ 
+    public String calcFriends(int[] sumFriends, int k) {
+        int n = sumFriends.length;
+        int totalSum = 0;
+        for (int x : sumFriends)
+            totalSum += x;
+        if (totalSum % (n - 2) != 0)
+            return BAD;
+        totalSum /= (n - 2);
+        for (int i = 0; i < n; ++i) {
+            if (sumFriends[i] > totalSum)
+                return BAD;
+            sumFriends[i] = totalSum - sumFriends[i];
+        }
+        int[] am = new int[n];
+        for (int i = 0; i < n; ++i) {
+            int s = 0;
+            int j = i;
+            int sign = 1;
+            do {
+                s = s + sign * sumFriends[j];
+                sign = -sign;
+                j = (j + k) % n;
+            } while (i != j);
+            if (s < 0 || s % 2 != 0)
+                return BAD;
+            am[i] = s / 2;
+        }
+        for (int i = 0; i < n; ++i) {
+            if (am[i] + am[(i + k) % n] != sumFriends[i])
+                return BAD;
+            if (am[i] > n - 1)
+                return BAD;
+        }
+        if (can(am))
+            return GOOD;
+        else
+            return BAD;
+    }
+ 
+    private boolean can(int[] am) {
+        int n = am.length;
+        Arrays.sort(am);
+        if (am[am.length - 1] == 0)
+            return true;
+        int k = am[am.length - 1];
+        int[] nam = new int[am.length - 1];
+        for (int i = 0; i < nam.length; ++i)
+            if (i >= am.length - 1 - k) {
+                nam[i] = am[i] - 1;
+                if (nam[i] < 0)
+                    return false;
+            } else
+                nam[i] = am[i];
+        return can(nam);
+    }
+ 
+}
+ 
+ 
+// Powered by FileEdit
+// Powered by RETester [based on ExampleBuilder]
+// Powered by CodeProcessor

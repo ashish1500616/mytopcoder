@@ -1,0 +1,45 @@
+#include <vector> 
+#include <string> 
+#include <queue> 
+#include <algorithm> 
+#include <map> 
+#include <math.h> 
+#include <string.h> 
+using namespace std; 
+
+int cnt[51][51][51][51]; // x, y, number, last number 
+const int mod = 1000007; 
+
+class CountPaths 
+{ 
+  public: 
+  vector <int> difPaths(int r, int c, vector <int> fieldrow, vector <int> fieldcol) 
+  { 
+    int n = fieldrow.size(); 
+    cnt[0][1][0][0] = 1; 
+    for (int i=1; i<=r; i++) 
+      for (int j=1; j<=c; j++) 
+      { 
+        int here = 0; 
+        for (int k=0; k<n; k++) 
+          if (fieldrow[k]==i && fieldcol[k]==j) here = k+1; 
+        for (int k=0; k<=n; k++) 
+          for (int l=0; l<=50; l++) 
+          { 
+            if (here==0) cnt[i][j][k][l] = (cnt[i][j][k][l] + cnt[i-1][j][k][l]) % mod; 
+              else if (here>l) cnt[i][j][k+1][here] = (cnt[i][j][k+1][here] + cnt[i-1][j][k][l]) % mod; 
+            if (here==0) cnt[i][j][k][l] = (cnt[i][j][k][l] + cnt[i][j-1][k][l]) % mod; 
+              else if (here>l) cnt[i][j][k+1][here] = (cnt[i][j][k+1][here] + cnt[i][j-1][k][l]) % mod; 
+          } 
+      } 
+    vector<int> res; 
+    for (int i=0; i<=n; i++) 
+    { 
+      int sum = 0; 
+      for (int j=0; j<=n; j++) 
+        sum = (sum + cnt[r][c][i][j]) % mod; 
+      res.push_back(sum); 
+    } 
+    return res; 
+  }; 
+};

@@ -1,0 +1,65 @@
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+#include <deque>
+#include <stack>
+#include <bitset>
+#include <algorithm>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+ 
+using namespace std;
+ 
+#define FOR(i,a,b) for(int i=(a);i<(b);++i)
+#define REP(i,n) FOR(i,0,n)
+#define ALL(a) (a).begin(),a.end()
+#define SORT(a) sort(ALL(a))
+#define SZ(a) ((int) a.size())
+#define pb push_back
+ 
+class CountExpressions {
+public:
+  int calcExpressions(int, int, int);
+};
+ 
+int CountExpressions::calcExpressions(int x, int y, int val) {
+  vector <int> a;
+  a.pb (x);
+  a.pb (x);
+  a.pb (y);
+  a.pb (y);
+  SORT (a);
+  int res = 0;
+  do {
+    REP (q, 3)
+      REP (w, 3)
+        REP (e, 3) {
+          int p = a[0];
+          if (q == 0) p += a[1]; 
+          if (q == 1) p -= a[1]; 
+          if (q == 2) p *= a[1]; 
+ 
+          if (w == 0) p += a[2]; 
+          if (w == 1) p -= a[2]; 
+          if (w == 2) p *= a[2]; 
+ 
+          if (e == 0) p += a[3]; 
+          if (e == 1) p -= a[3]; 
+          if (e == 2) p *= a[3]; 
+          
+          if (p == val)
+            ++res;
+        }    
+  } while (next_permutation (ALL (a)));
+  return res;
+}
+ 

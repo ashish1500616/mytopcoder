@@ -1,0 +1,23 @@
+class Prank{
+public:
+	vector<int> realWeight(int apparentGain)
+	{
+		int inf=100000;
+		vi res;
+		for(int i=1;i<inf;i++)
+		{
+			int s1=i*i;
+			int s2=(i+1)*(i+1);
+			if(s2-s1>apparentGain) break;
+			for(int j=i+1;j<inf;j++)
+			{
+				int cur=j*j;
+				if(cur-s1>apparentGain) break;
+				if(cur-s1==apparentGain) res.pb(j);
+			}
+		}
+		return res;
+	}
+};
+
+
